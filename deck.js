@@ -17,7 +17,7 @@ let deck = [{'name': 'AC,', 'value': 14, 'img': 'svg-cards/ace_of_clubs.svg'}, {
 {'name': '7H', 'value': 7, 'img': 'svg-cards/7_of_hearts.svg'}, {'name': '8H', 'value': 8, 'img': 'svg-cards/8_of_hearts.svg'}, 
 {'name': '9H', 'value': 9, 'img': 'svg-cards/9_of_hearts.svg'}, {'name': '10H', 'value': 10, 'img': 'svg-cards/10_of_hearts.svg'}, 
 {'name': 'JH', 'value': 11, 'img': 'svg-cards/jack_of_hearts.svg'}, {'name': 'QH', 'value': 12, 'img': 'svg-cards/queen_of_hearts.svg'}, 
-{'name': 'KH', 'value': 13, 'img': 'svg-cards/king_of_hearts.svg'}, {'name': 'AS', 'value': 14, 'img': 'svg-cards/ace_of_spades'}, 
+{'name': 'KH', 'value': 13, 'img': 'svg-cards/king_of_hearts.svg'}, {'name': 'AS', 'value': 14, 'img': 'svg-cards/ace_of_spades.svg'}, 
 {'name': '2S', 'value': 2, 'img': 'svg-cards/2_of_spades.svg'}, {'name': '3S', 'value': 3, 'img': 'svg-cards/3_of_spades.svg'}, 
 {'name': '4S', 'value': 4, 'img': 'svg-cards/4_of_spades.svg'}, {'name': '5S', 'value': 5, 'img': 'svg-cards/5_of_spades.svg'}, 
 {'name': '6S', 'value': 6, 'img': 'svg-cards/6_of_spades.svg'}, {'name': '7S', 'value': 7, 'img': 'svg-cards/7_of_spades.svg'}, 

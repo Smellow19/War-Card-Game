@@ -13,8 +13,11 @@ window.onload = function() {
     sortDeck(deck);
     el("#deal").addEventListener('click', deal);
     el("#draw").addEventListener('click', () => {
-        drawCard(player1, currCard1);
-        drawCard(player2, currCard2);
+        drawCard(player1, currCard1, p1Card);
+        drawCard(player2, currCard2, p2Card);
+        compareFunction();
+        count1();
+        count2();
     });
 
 }
@@ -23,6 +26,9 @@ let player1 = [];
 let player2 = [];
 let currCard1 = el("#currCard1");
 let currCard2 = el("#currCard2");
+let p1Card;
+let p2Card;
+
 
 let count1 = () => {
     el("#count1").innerHTML = 'Card Count: ' + player1.length}
@@ -32,7 +38,10 @@ let count2 = () => {
 
 
 const deal = () => {
-    let deck1 = deck;
+    let deck1 = [];
+    player1 = [];
+    player2 = [];
+    deck1 = deck;
     for (let i = 0; i < deck1.length; i++) {
         if (i < (deck1.length / 2)) {
             player1.push(deck1[i]);
@@ -44,10 +53,29 @@ const deal = () => {
     count2();
 };
 
-const drawCard = (player, cardElement) => {
+const drawCard = (player, cardElement, card) => {
     let playerDeck = player;
     let cardArea = cardElement;
-    let currCard = playerDeck.pop();
+    let currCard = player.pop();
+    card = currCard;
 
     cardArea.style.backgroundImage = 'url(' + currCard.img + ')' ;
+    cardArea.dataset.value = currCard.value
+    console.log(card);
+};
+
+const compareFunction = () => {
+    if(currCard1.dataset.value === currCard2.dataset.value){
+        console.log('War');
+    }
+    else if(currCard1.dataset.value > currCard2.dataset.value){
+        console.log(p1Card);
+        player1.push(p1Card, p2Card);
+    } else if (currCard1.dataset.value < currCard2.dataset.value) {
+        console.log(p1Card);
+        player2.push(p1Card, p2Card);
+    }
+
+    count1();
+    count2();
 };
