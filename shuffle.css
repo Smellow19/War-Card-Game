@@ -1,0 +1,17 @@
+#p1, #deal, #p2, #draw, #count1, #count2{
+    border: 1px solid black;
+    width: 20%;
+    height: 40px;
+    margin:auto;
+    text-align: center;
+    padding-top: 25px;
+    
+}
+
+#currCard1, #currCard2{
+    margin: 200px 0px;
+}
+
+#deal:hover, #draw:hover{
+    cursor: pointer;
+}
