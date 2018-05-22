@@ -15,9 +15,10 @@ window.onload = function() {
     el("#draw").addEventListener('click', () => {
         drawCard(player1, currCard1, p1Card);
         drawCard(player2, currCard2, p2Card);
+        currCard1 = el("#currCard1");
+        currCard2 = el("#currCard2");
         compareFunction();
-        count1();
-        count2();
+        count();
     });
 
 }
@@ -29,13 +30,10 @@ let currCard2 = el("#currCard2");
 let p1Card;
 let p2Card;
 
-
-let count1 = () => {
-    el("#count1").innerHTML = 'Card Count: ' + player1.length}
-
-let count2 = () => {
-    el('#count2').innerHTML = 'Card Count: ' + player2.length}
-
+let count = () => {
+    el("#count1").innerHTML = 'Card Count: ' + player1.length;
+    el('#count2').innerHTML = 'Card Count: ' + player2.length;
+};
 
 const deal = () => {
     let deck1 = [];
@@ -49,33 +47,34 @@ const deal = () => {
             player2.push(deck1[i]);
         };
     };
-    count1();
-    count2();
+    count();
 };
 
 const drawCard = (player, cardElement, card) => {
     let playerDeck = player;
     let cardArea = cardElement;
-    let currCard = player.pop();
-    card = currCard;
+    let currCard = playerDeck.shift();
+    if (card === p1Card) {
+        p1Card = currCard;
+    } else if (card === p2Card) {
+        p2Card = currCard;
+    };
 
-    cardArea.style.backgroundImage = 'url(' + currCard.img + ')' ;
-    cardArea.dataset.value = currCard.value
-    console.log(card);
+    cardArea.style.backgroundImage = 'url(' + currCard.img + ')';
+    cardArea.dataset.value = currCard.value;
 };
 
 const compareFunction = () => {
     if(currCard1.dataset.value === currCard2.dataset.value){
         console.log('War');
     }
-    else if(currCard1.dataset.value > currCard2.dataset.value){
-        console.log(p1Card);
+    else if(currCard1.dataset.value < currCard2.dataset.value){
         player1.push(p1Card, p2Card);
-    } else if (currCard1.dataset.value < currCard2.dataset.value) {
-        console.log(p1Card);
+        console.log("Player 1 is greater.");
+    } else if (currCard1.dataset.value > currCard2.dataset.value) {
         player2.push(p1Card, p2Card);
+        console.log("Player 2 is greater.");
     }
 
-    count1();
-    count2();
+    count();
 };
