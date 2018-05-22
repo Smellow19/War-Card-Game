@@ -4,7 +4,7 @@ html body{
 }
 
 
-#p1, #deal, #p2, #draw, #count1, #count2{
+#p1, #deal, #p2, #draw, #count1, #count2, #autoplay {
     border: 1px solid black;
     width: 20%;
     height: 40px;

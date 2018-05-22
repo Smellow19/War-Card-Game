@@ -20,7 +20,16 @@ window.onload = function() {
         compareFunction();
         count();
     });
-
+    el("#autoplay").addEventListener('click', setTimeout(() => {
+        for (let i = 0; i < 1000; i++) {
+            drawCard(player1, currCard1, p1Card);
+            drawCard(player2, currCard2, p2Card);
+            currCard1 = el("#currCard1");
+            currCard2 = el("#currCard2");
+            compareFunction();
+            count();
+        };
+    }, 20));
 }
 
 let player1 = [];
@@ -65,16 +74,34 @@ const drawCard = (player, cardElement, card) => {
 };
 
 const compareFunction = () => {
-    if(currCard1.dataset.value === currCard2.dataset.value){
+    let temp = [];
+    temp.push(p1Card, p2Card);
+    sortDeck(temp);
+
+    if(Number(currCard1.dataset.value) === Number(currCard2.dataset.value)){
         console.log('War');
     }
-    else if(currCard1.dataset.value < currCard2.dataset.value){
-        player1.push(p1Card, p2Card);
+    else if(Number(currCard1.dataset.value) > Number(currCard2.dataset.value)){
+        player1 = player1.concat(temp);
         console.log("Player 1 is greater.");
-    } else if (currCard1.dataset.value > currCard2.dataset.value) {
-        player2.push(p1Card, p2Card);
+    } else{
+        player2 = player2.concat(temp);
         console.log("Player 2 is greater.");
     }
 
     count();
 };
+
+const itWar = (p1, p2) => {
+    let temp = [];
+    for(let i = 0; i < 3; i++){
+        temp.push(player1.shift());
+        temp.push(player2.shift());
+    }
+        
+    drawCard(player1, currCard1, p1Card);
+    drawCard(player2, currCard2, p2Card);
+currCard1 = el("#currCard1");
+currCard2 = el("#currCard2");
+compareFunction();
+}
