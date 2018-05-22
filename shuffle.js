@@ -1,66 +1,53 @@
 'use strict'
+
+// Shortcut to get elements, this will be in literally every .js file I write
+const el = (element) => {
+    if (element.charAt(0) === "#") { // If passed an ID...
+        return document.querySelector(element); // ... returns single element
+    } else {
+        return document.querySelectorAll(element); // Otherwise, returns a nodelist
+    }
+};
+
 window.onload = function() {
-    
-    document.getElementById("deal").addEventListener('click', deal);
-
+    sortDeck(deck);
+    el("#deal").addEventListener('click', deal);
+    el("#draw").addEventListener('click', () => {
+        drawCard(player1, currCard1);
+        drawCard(player2, currCard2);
+    });
 
 }
 
-let players = [];
-
-function Card(value, name, suit) {
-    this.value = value;
-    this.name = name;
-    this.suit = suit;
-}
-function deck() {
-    const name = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
-    const suit = ['Hearts', 'Diamonds', 'Spades', 'Clubs'];
-    let cards = [];
-
-    for (let s = 0; s < suit.length; s++) {
-        for (let n = 0; n < name.length; n++) {
-            cards.push(new Card(n + 1, name[n], suit[s]));
-        }
-    }
-    return shuffle(cards);
-}
-
-const shuffle = (cardArray) => {
-    for (var i = 0; i < 10000; i++) {
-        let location1 = Math.floor((Math.random() * cardArray.length));
-        let location2 = Math.floor((Math.random() * cardArray.length));
-        let temp = cardArray[location1];
-
-        cardArray[location1] = cardArray[location2];
-        cardArray[location2] = temp;
-    }
-    return cardArray;
-}
+let player1 = [];
+let player2 = [];
+let currCard1 = el("#currCard1");
+let currCard2 = el("#currCard2");
 
 let count1 = () => {
-    document.getElementById('count1').innerHTML = 'Card Count: ' + players[0].length}
+    el("#count1").innerHTML = 'Card Count: ' + player1.length}
 
 let count2 = () => {
-    document.getElementById('count2').innerHTML = 'Card Count: ' + players[1].length}
+    el('#count2').innerHTML = 'Card Count: ' + player2.length}
 
 
 const deal = () => {
-    let deck1 = deck();
-    let player1 = [];
-    let player2 = [];
+    let deck1 = deck;
     for (let i = 0; i < deck1.length; i++) {
         if (i < (deck1.length / 2)) {
             player1.push(deck1[i]);
         } else {
             player2.push(deck1[i]);
-        }
-    }
-    players.push(player1);
-    players.push(player2);
+        };
+    };
     count1();
     count2();
-    console.log('Player1' + player1);
-    console.log('Player2' + player2);
-    console.log("Deck Dealt!");
-}
+};
+
+const drawCard = (player, cardElement) => {
+    let playerDeck = player;
+    let cardArea = cardElement;
+    let currCard = playerDeck.pop();
+
+    cardArea.style.backgroundImage = 'url(' + currCard.img + ')' ;
+};
