@@ -1,5 +1,13 @@
 'use strict'
 
+let player1 = [];
+let player2 = [];
+let currCard1 = el("#currCard1");
+let currCard2 = el("#currCard2");
+let p1Card;
+let p2Card;
+let compareResult = 0;
+
 // Shortcut to get elements, this will be in literally every .js file I write
 const el = (element) => {
     if (element.charAt(0) === "#") { // If passed an ID...
@@ -27,17 +35,11 @@ window.onload = function() {
             currCard1 = el("#currCard1");
             currCard2 = el("#currCard2");
             compareFunction();
+            itWar();
             count();
         };
     });
 }
-
-let player1 = [];
-let player2 = [];
-let currCard1 = el("#currCard1");
-let currCard2 = el("#currCard2");
-let p1Card;
-let p2Card;
 
 let count = () => {
     el("#count1").innerHTML = 'Card Count: ' + player1.length;
@@ -74,42 +76,48 @@ const drawCard = (player, cardElement, card) => {
 };
 
 const compareFunction = () => {
-    let temp = [];
-    temp.push(p1Card, p2Card);
-    sortDeck(temp);
-    let p1 ='Player1';
 
     if(Number(currCard1.dataset.value) === Number(currCard2.dataset.value)){
-        itWar();
+        compareResult = 0
         console.log('War');
+        console.log(compareResult)
+        return compareResult;
     }
     else if(Number(currCard1.dataset.value) > Number(currCard2.dataset.value)){
-        player1 = player1.concat(temp);
+        compareResult = 1;
         console.log("Player 1 is greater.");
-        return "Player1";
+        console.log(compareResult)
+        return compareResult;
+
     } else{
-        player2 = player2.concat(temp);
+        compareResult = 2;
         console.log("Player 2 is greater.");
-        return "Player2"
+        console.log(compareResult)
+        return compareResult;
     }
 
     count();
+    console.log(compareResult);
 };
 
 const itWar = () => {
-    let temp2 = [];
-    for(let i = 0; i < 3; i++){
-        temp2.push(player1.shift());
-        temp2.push(player2.shift());
+     let temp = [];
+     temp.push(p1Card, p2Card);
+     sortDeck(temp)
+
+    if(compareResult == 0){
+        for(let i = 0; i < 3; i++){
+            temp.push(player1.shift());
+            temp.push(player2.shift());
+        }
+    } else if(compareResult == 1) {
+        player1 = player1.concat(temp)
+    }
+    else {
+        player2 = player2.concat(temp);
     }
         
     drawCard(player1, currCard1, p1Card);
     drawCard(player2, currCard2, p2Card);
     currCard1 = el("#currCard1");
     currCard2 = el("#currCard2");
-    if(compareFunction() === "Player1"){
-        player1.concat(temp2);
-    } else {
-        player2.concat(temp2);
-    }
-}
