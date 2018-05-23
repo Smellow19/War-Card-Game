@@ -38,7 +38,7 @@ body{
 
 .box {
     border: 1px solid black;
-    background: white;
+    background: #D3D3D3;
     opacity: 0.8;
     border-radius: 15px;
     width: 200px;
@@ -89,6 +89,7 @@ body{
     margin-top: 25px;
 }
 
-#deal:hover, #draw:hover{
+#deal:hover, #draw:hover, #autoplay:hover{
     cursor: pointer;
+    background-color: #D3D3D3;
 }
