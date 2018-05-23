@@ -26,6 +26,7 @@ window.onload = function() {
         compareFunction();
         itWar();
         count();
+        winner();
     });
     el("#autoplay").addEventListener('click', () => {
         for (let i = 0; i < 1000; i++) {
@@ -33,6 +34,7 @@ window.onload = function() {
             compareFunction();
             itWar();
             count();
+            winner();
         };
     });
 }
@@ -99,27 +101,33 @@ const setVar = () => {
 };
 
 const itWar = () => {
-     temp.push(p1Card, p2Card);
-     sortDeck(temp);
+    temp.push(p1Card, p2Card);
+    sortDeck(temp);
 
     if(compareResult == 0){
         for(let i = 0; i < 3; i++){
             temp.push(player1.shift());
             temp.push(player2.shift());
         }
+
         setVar();
         compareFunction();
         itWar();
 
-
     } else if(compareResult == 1) {
         player1 = player1.concat(temp)
         temp = [];
-    }
-    else {
+
+    } else {
         player2 = player2.concat(temp);
         temp = [];
     }
-        
-
+};
+    
+const winner = () => {
+    if (player1.length === 0) {
+        el("#winner").innerHTML = "Player 1 wins the game!!"
+    } else if (player2.length === 0) {
+        el("#winner").innerHTML = "Player 2 wins the game!!"
+    }
 };
