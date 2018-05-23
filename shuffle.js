@@ -1,13 +1,5 @@
 'use strict'
 
-let player1 = [];
-let player2 = [];
-let currCard1 = el("#currCard1");
-let currCard2 = el("#currCard2");
-let p1Card;
-let p2Card;
-let compareResult = 0;
-
 // Shortcut to get elements, this will be in literally every .js file I write
 const el = (element) => {
     if (element.charAt(0) === "#") { // If passed an ID...
@@ -17,23 +9,27 @@ const el = (element) => {
     }
 };
 
+let player1 = [];
+let player2 = [];
+let currCard1 = el("#currCard1");
+let currCard2 = el("#currCard2");
+let p1Card;
+let p2Card;
+let compareResult = 0;
+let temp = [];
+
 window.onload = function() {
     sortDeck(deck);
     el("#deal").addEventListener('click', deal);
     el("#draw").addEventListener('click', () => {
-        drawCard(player1, currCard1, p1Card);
-        drawCard(player2, currCard2, p2Card);
-        currCard1 = el("#currCard1");
-        currCard2 = el("#currCard2");
+        setVar();
         compareFunction();
+        itWar();
         count();
     });
     el("#autoplay").addEventListener('click', () => {
         for (let i = 0; i < 1000; i++) {
-            drawCard(player1, currCard1, p1Card);
-            drawCard(player2, currCard2, p2Card);
-            currCard1 = el("#currCard1");
-            currCard2 = el("#currCard2");
+            setVar();
             compareFunction();
             itWar();
             count();
@@ -100,24 +96,39 @@ const compareFunction = () => {
     console.log(compareResult);
 };
 
+const setVar = () => {
+    drawCard(player1, currCard1, p1Card);
+    drawCard(player2, currCard2, p2Card);
+    currCard1 = el("#currCard1");
+    currCard2 = el("#currCard2");
+    console.log('Var reset');
+}
+
 const itWar = () => {
-     let temp = [];
      temp.push(p1Card, p2Card);
-     sortDeck(temp)
+     sortDeck(temp);
 
     if(compareResult == 0){
         for(let i = 0; i < 3; i++){
             temp.push(player1.shift());
             temp.push(player2.shift());
         }
+        setVar();
+        compareFunction();
+        console.log(compareResult);
+        itWar();
+
+
     } else if(compareResult == 1) {
+        console.log('Concat1');
         player1 = player1.concat(temp)
+        temp = [];
     }
     else {
         player2 = player2.concat(temp);
+        console.log('Concat2');
+        temp = [];
     }
         
-    drawCard(player1, currCard1, p1Card);
-    drawCard(player2, currCard2, p2Card);
-    currCard1 = el("#currCard1");
-    currCard2 = el("#currCard2");
+
+}
