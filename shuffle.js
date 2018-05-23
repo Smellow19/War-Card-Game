@@ -71,6 +71,15 @@ const drawCard = (player, cardElement, card) => {
 
     cardArea.style.backgroundImage = 'url(' + currCard.img + ')';
     cardArea.dataset.value = currCard.value;
+    if (cardArea.classList.contains("fadein")) {
+        cardArea.classList.remove("fadein");
+        cardArea.classList.add("fadein2");
+    } else if (cardArea.classList.contains("fadein2")) {
+        cardArea.classList.remove("fadein2");
+        cardArea.classList.add("fadein");
+    } else {
+        cardArea.classList.add("fadein");
+    }
 };
 
 const compareFunction = () => {
