@@ -20,7 +20,7 @@ window.onload = function() {
         compareFunction();
         count();
     });
-    el("#autoplay").addEventListener('click', setTimeout(() => {
+    el("#autoplay").addEventListener('click', () => {
         for (let i = 0; i < 1000; i++) {
             drawCard(player1, currCard1, p1Card);
             drawCard(player2, currCard2, p2Card);
@@ -29,7 +29,7 @@ window.onload = function() {
             compareFunction();
             count();
         };
-    }, 20));
+    });
 }
 
 let player1 = [];
@@ -77,31 +77,39 @@ const compareFunction = () => {
     let temp = [];
     temp.push(p1Card, p2Card);
     sortDeck(temp);
+    let p1 ='Player1';
 
     if(Number(currCard1.dataset.value) === Number(currCard2.dataset.value)){
+        itWar();
         console.log('War');
     }
     else if(Number(currCard1.dataset.value) > Number(currCard2.dataset.value)){
         player1 = player1.concat(temp);
         console.log("Player 1 is greater.");
+        return "Player1";
     } else{
         player2 = player2.concat(temp);
         console.log("Player 2 is greater.");
+        return "Player2"
     }
 
     count();
 };
 
-const itWar = (p1, p2) => {
-    let temp = [];
+const itWar = () => {
+    let temp2 = [];
     for(let i = 0; i < 3; i++){
-        temp.push(player1.shift());
-        temp.push(player2.shift());
+        temp2.push(player1.shift());
+        temp2.push(player2.shift());
     }
         
     drawCard(player1, currCard1, p1Card);
     drawCard(player2, currCard2, p2Card);
-currCard1 = el("#currCard1");
-currCard2 = el("#currCard2");
-compareFunction();
+    currCard1 = el("#currCard1");
+    currCard2 = el("#currCard2");
+    if(compareFunction() === "Player1"){
+        player1.concat(temp2);
+    } else {
+        player2.concat(temp2);
+    }
 }
