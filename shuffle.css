@@ -3,9 +3,27 @@ html body{
     height: 100%;
 }
 
+body{
+    background-image: url('assets/poker-table.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+}
+
+
+    .right {
+        float: right;
+    }
+
+    .left{
+        float:left;
+    }
 
 #p1, #deal, #p2, #draw, #count1, #count2, #autoplay {
     border: 1px solid black;
+    background: white;
+    opacity: 0.8;
+    border-radius: 15px;
     width: 20%;
     height: 40px;
     margin: auto;

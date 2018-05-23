@@ -74,7 +74,7 @@ const drawCard = (player, cardElement, card) => {
 const compareFunction = () => {
 
     if(Number(currCard1.dataset.value) === Number(currCard2.dataset.value)){
-        compareResult = 0
+        compareResult = 0;
         console.log('War');
         console.log(compareResult)
         return compareResult;
@@ -88,7 +88,7 @@ const compareFunction = () => {
     } else{
         compareResult = 2;
         console.log("Player 2 is greater.");
-        console.log(compareResult)
+        console.log(compareResult);
         return compareResult;
     }
 
@@ -115,7 +115,6 @@ const itWar = () => {
         }
         setVar();
         compareFunction();
-        console.log(compareResult);
         itWar();
 
 
