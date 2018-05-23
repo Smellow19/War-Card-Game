@@ -75,25 +75,20 @@ const compareFunction = () => {
 
     if(Number(currCard1.dataset.value) === Number(currCard2.dataset.value)){
         compareResult = 0
-        console.log('War');
-        console.log(compareResult)
         return compareResult;
     }
     else if(Number(currCard1.dataset.value) > Number(currCard2.dataset.value)){
         compareResult = 1;
-        console.log("Player 1 is greater.");
-        console.log(compareResult)
+        el("#winner").innerHTML = "Player 1 wins the round!";
         return compareResult;
 
     } else{
         compareResult = 2;
-        console.log("Player 2 is greater.");
-        console.log(compareResult)
+        el("#winner").innerHTML = "Player 2 wins the round!";
         return compareResult;
     }
 
     count();
-    console.log(compareResult);
 };
 
 const setVar = () => {
@@ -101,8 +96,7 @@ const setVar = () => {
     drawCard(player2, currCard2, p2Card);
     currCard1 = el("#currCard1");
     currCard2 = el("#currCard2");
-    console.log('Var reset');
-}
+};
 
 const itWar = () => {
      temp.push(p1Card, p2Card);
@@ -115,20 +109,17 @@ const itWar = () => {
         }
         setVar();
         compareFunction();
-        console.log(compareResult);
         itWar();
 
 
     } else if(compareResult == 1) {
-        console.log('Concat1');
         player1 = player1.concat(temp)
         temp = [];
     }
     else {
         player2 = player2.concat(temp);
-        console.log('Concat2');
         temp = [];
     }
         
 
-}
+};
