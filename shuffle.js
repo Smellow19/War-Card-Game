@@ -22,19 +22,19 @@ window.onload = function() {
     sortDeck(deck);
     el("#deal").addEventListener('click', deal);
     el("#draw").addEventListener('click', () => {
+        winner();
         setVar();
         compareFunction();
         itWar();
         count();
-        winner();
     });
     el("#autoplay").addEventListener('click', () => {
         for (let i = 0; i < 1000; i++) {
+            winner();
             setVar();
             compareFunction();
             itWar();
             count();
-            winner();
         };
     });
 }
@@ -105,24 +105,39 @@ const itWar = () => {
     sortDeck(temp);
 
     if(compareResult == 0){
-        for(let i = 0; i < 3; i++){
-            temp.push(player1.shift());
-            temp.push(player2.shift());
-        }
+        if(player1.length < 4){
+            for (let i = 0; i < player1.length - 1; i++) {
+                temp.push(player1.shift());
+            }
+        } 
+        else if (player2.length < 4) {
+                for (let i = 0; i < player2.length - 1; i++){
+                    temp.push(player1.shift());
+                }
+        } 
+        else {
 
-        setVar();
-        compareFunction();
-        itWar();
+
+                for(let i = 0; i < 3; i++){
+                    temp.push(player1.shift());
+                    temp.push(player2.shift());
+                }
+
+                setVar();
+                compareFunction();
+                itWar();
+            }
 
     } else if(compareResult == 1) {
-        player1 = player1.concat(temp)
-        temp = [];
+         player1 = player1.concat(temp)
+         temp = [];
 
     } else {
         player2 = player2.concat(temp);
         temp = [];
-    }
-};
+        }
+    };
+
     
 const winner = () => {
     if (player1.length === 0) {
