@@ -5,8 +5,8 @@ html body{
 
 body{
     background-image: url('assets/poker-table.jpg');
-        background-repeat: no-repeat;
-        background-size: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
 
 }
 
@@ -33,7 +33,7 @@ body{
 }
 
 #currCard1, #currCard2{
-    height: 400px;
+    height: 400;
     width: 250px;
     background-size: 80% 90%;
     background-repeat: no-repeat;
