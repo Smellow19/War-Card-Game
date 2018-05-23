@@ -45,6 +45,7 @@ let count = () => {
 };
 
 const deal = () => {
+    varReset();
     let deck1 = [];
     player1 = [];
     player2 = [];
@@ -140,9 +141,18 @@ const itWar = () => {
 
     
 const winner = () => {
-    if (player1.length === 0) {
-        el("#winner").innerHTML = "Player 1 wins the game!!"
+    
+    if(player1.length === 0 && player2.length === 0){
+        el("#winner").innerHTML = "Please deal a new deck";
+    }else if (player1.length === 0) {
+        el("#winner").innerHTML = "Player 2 wins the game!!";
     } else if (player2.length === 0) {
-        el("#winner").innerHTML = "Player 2 wins the game!!"
+        el("#winner").innerHTML = "Player 1 wins the game!!";
     }
 };
+
+const varReset = () => {
+    el("#winner").innerHTML = '';
+
+
+}
