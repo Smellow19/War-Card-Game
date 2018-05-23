@@ -30,36 +30,22 @@ body{
     padding-top: 20px;
 }
 
-#count1 {
-    grid-column-start: 3;
-    grid-column-end: 4;
+#p1 {
+    grid-column: 1 2;
     grid-row: 1 2;
 }
 
-#currCard1 {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row: 2 3;
-}
-
-#currCard2 {
-    grid-column-start: 1;
-    grid-column-end: 4;
-    grid-row: 3 4;
+#count1 {
+    grid-column: 3 4;
+    grid-row: 1 2;
 }
 
 #winner {
-    margin: 20px;
     text-align: center;
     grid-column-start: 1;
     grid-column-end: 4;
     grid-row-start: 4;
     grid-row-end: 5;
-}
-
-#count2 {
-    grid-column-start: 3;
-    grid-column-end: 4;
 }
 
 #currCard1, #currCard2{
